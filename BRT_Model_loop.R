@@ -6,7 +6,7 @@ for (i in 1:length(specieslist))
 {
   fname <- paste("d:/AWR/", specieslist[i], ".csv", sep="")
   print(fname)
-#  moddata <- read.csv(fname)
+#  moddata <- read.csv(fname)Inital
   for (j in 1:length(lrs))
   {
     for (k in 1:length(tcs))
@@ -29,4 +29,4 @@ for (i in 1:length(specieslist))
 resdf <- data.frame(df)
 resdf <- cbind(resdf, specieslist[resdf$X1])
 colnames(resdf) <- c("speciesndx", "lr", "tc", "roc", "rocse", "trees", "elapsed", "species")
-write.csv(resdf, "resdf.csv")
+write.csv(resdf, "resdf.csv", row.names=FALSE)
