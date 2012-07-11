@@ -20,18 +20,22 @@ for (i in 1:length(specieslist))
   {
     for (k in 1:length(tcs))
     {
+	modres <- NULL
 # uncomment next line to actually run the model
-# modres <- gbm.step(moddata, gbm.x=4:61, gbm.y=3, family="bernoulli", tree.complexity=tcs[k], learning.rate=lrs[j], bag.fraction=0.5)
+# modres <- try(gbm.step(moddata, gbm.x=4:61, gbm.y=3, family="bernoulli", tree.complexity=tcs[k], learning.rate=lrs[j], bag.fraction=0.5))
 # replace the rnorm statements with variables from the model, with following lines variables are populated with random numbers
-      roc <- rnorm(1)
-      rocse <- rnorm(1)
-      trees <- rnorm(1)
-      elapsed <- rnorm(1)
+	if (modres == "gbm")
+		{
+		roc <- rnorm(1)
+		rocse <- rnorm(1)
+		trees <- rnorm(1)
+		elapsed <- rnorm(1)
       # roc <- mean(modres$cv.roc.matrix)
-      # rocse <- std(modres$cv.roc.matrix)/sqrt(length(modres$cv.roc.matrix))
+      # rocse <- sd(modres$cv.roc.matrix)/sqrt(length(modres$cv.roc.matrix))
       # trees <- modres$n.trees
       # elapsed <- modres$gbm.call$elapsed.time.minutes
-      df <- rbind(df, c(i, lrs[j], tcs[k], roc, rocse, trees, elapsed))
+		df <- rbind(df, c(i, lrs[j], tcs[k], roc, rocse, trees, elapsed))
+		}
     }
   }
 }
