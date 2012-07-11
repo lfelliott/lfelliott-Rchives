@@ -15,13 +15,13 @@ for (i in 1:length(specieslist))
 # build file name  
   fname <- paste("d:/AWR/", specieslist[i], ".csv", sep="")
 #  uncomment next line to actually read in data  
-#  moddata <- read.csv(fname)Inital
+#  moddata <- read.csv(fname)
   for (j in 1:length(lrs))
   {
     for (k in 1:length(tcs))
     {
 # uncomment next line to actually run the model
-# modres <- gmb.step(moddata, gbm.x=4:61, gbm.y=3, family="bernoulli", tree.complexity=tcs[k], learning.rate=lrs[j], bag.fraction=0.5)
+# modres <- gbm.step(moddata, gbm.x=4:61, gbm.y=3, family="bernoulli", tree.complexity=tcs[k], learning.rate=lrs[j], bag.fraction=0.5)
 # replace the rnorm statements with variables from the model, with following lines variables are populated with random numbers
       roc <- rnorm(1)
       rocse <- rnorm(1)
