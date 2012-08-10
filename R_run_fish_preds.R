@@ -6,6 +6,8 @@ library(dismo)
 library(foreign)
 
 working_dir <- "D:/AWR/directory_of_models"
+streams<-read.delim("D:/AWR/strms4.txt", header=TRUE, sep="\t")
+
 chunks <- 10
 numrows <- dim(streams)[1]
 jump <- round(numrows/chunks) + 1
