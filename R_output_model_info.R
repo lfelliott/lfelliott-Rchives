@@ -14,6 +14,9 @@ for (fish_data in fish_list)
 	{
 	load(fish_data)
 	fish_name <- strsplit(fish_data, ".", fixed = TRUE)[[1]][1]
+	# If the model loaded in the load() above is not called modres then you need to move the model into modres. For instance, if it's called the fishes name (as in the string fish_name)
+	# load it into modres using 
+	# modres <- get(fish_name)
 	if (class(modres) == "gbm")
 		{
 		# Get parameters you want to save
@@ -26,6 +29,14 @@ for (fish_data in fish_list)
 		species <- rbind(species, fish_name)
 		}
 	rm(modres)
+	# To delete all the gbm models in the workspace before the next iteration, next 7 lines of code
+	modelsinws <- NULL
+	objsinws <- ls()
+	for (obj in objsinws)
+		{
+		if (class(get(obj)) == "gbm") modelsinws <- c(modelsinws, obj)
+		}
+	rm(list = modelsinws)
 	}
 resdf <- data.frame(results)
 resdf <- cbind(species, resdf)
