@@ -37,6 +37,7 @@ for (fish_data in fish_list)
 		if (class(get(obj)) == "gbm") modelsinws <- c(modelsinws, obj)
 		}
 	rm(list = modelsinws)
+	cat(".")
 	}
 resdf <- data.frame(results)
 resdf <- cbind(species, resdf)
