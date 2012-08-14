@@ -1,7 +1,7 @@
 # Script to output residuals from models
-# Lee Elliott 20120810
+# Lee Elliott 20120814
 
-install_packages("svMisc")
+install.packages("svMisc")
 library(svMisc)
 library(foreign)
 
