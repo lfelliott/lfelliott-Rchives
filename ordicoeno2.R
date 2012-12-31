@@ -2,15 +2,21 @@
 # maximum y to better reflect maximum possible in species response curves.
 #
 # to get a smaller subset of species, make a list of species 
+# to remove species
+# drop.species = c("ANGE", "SCSC")
+# x.subset <- x[,-which(names(x) %in% drop.species)]
+# or
+# x.subset <- subset(x, select=-c(ANGE, SCSC))
+# to keep the species
 # keep.species = c("ANGE", "SCSC")
-# veg.subset <- veg[,which(names(veg) %in% keep.species)]
+# x.subset <- x[, keep.species]
+
 
 ordicoeno2 <- function (x, ordiplot, axis = 1, ...) 
 {
     if (!require(mgcv)) {
         stop("Requires package mgcv")
     }
-	colorsloaded <- rep(palette(), 20)
 	species <- NULL
 	linecolor <- NULL
 	linetype <- NULL
@@ -21,7 +27,8 @@ ordicoeno2 <- function (x, ordiplot, axis = 1, ...)
     sorted[1:nrow(original), ] <- original[seq, ]
     edfs <- array(NA, dim = c(ncol(x)))
     names(edfs) <- colnames(x)
-    palette(rainbow(ncol(x)))
+#   palette(rainbow(ncol(x)))
+	colorsloaded <- rep(palette(), 20)
 	gamresult <- gam(sorted[, 1] ~ s(ordiscore), data = sorted)
     edfs[1] <- summary(gamresult)$edf
     newdata <- data.frame(seq(min(sorted$ordiscore), max(sorted$ordiscore), 
@@ -39,8 +46,8 @@ ordicoeno2 <- function (x, ordiplot, axis = 1, ...)
     plot(newdata$ordiscore, gamresult2, type = "l", ylim = c(0, 
         curvemax), col = 1, pch = 1, xlab = "site score on ordination axis", 
         ylab = "species values", ...)
-	cat("Species\t\t\tColor\t\t\tMaximum Value\n")
-	cat(colnames(original)[1], "\t\t\t", colorsloaded[1], "\t\t\t", max(gamresult2), "\n")
+	cat("Species\t\tColor\t\t\tMaximum Value\tedf\n")
+	if (nchar(colorsloaded[1]) > 5) cat(colnames(original)[1], "\t\t", colorsloaded[1],"\t\t", max(gamresult2), "\t", summary(gamresult)$edf, "\n") else cat(colnames(original)[1], "\t\t", colorsloaded[1],"\t\t\t", max(gamresult2), "\t", summary(gamresult)$edf,"\n")
 	species <- c(species, colnames(original)[1])
 	linecolor <- c(linecolor, 1)
 	linetype <- c(linetype, 1)
@@ -50,7 +57,7 @@ ordicoeno2 <- function (x, ordiplot, axis = 1, ...)
         edfs[i] <- summary(gamresult)$edf
         points(newdata$ordiscore, gamresult2, type = "l", pch = 19, 
             col = i, ...)
-		cat(colnames(original)[i], "\t", colorsloaded[i],"\t", max(gamresult2), "\n")
+		if (nchar(colorsloaded[i]) > 5) cat(colnames(original)[i], "\t\t", colorsloaded[i],"\t\t", max(gamresult2), "\t", edfs[i], "\n") else cat(colnames(original)[i], "\t\t", colorsloaded[i],"\t\t\t", max(gamresult2), "\t", edfs[i],"\n")
 		species <- c(species, colnames(original)[i])
 		linecolor <- c(linecolor, i)
 		linetype <- c(linetype, 1)
