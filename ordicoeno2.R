@@ -1,5 +1,9 @@
 # Modified function ordicoeno from Biodiversity R to list species and the colors of the curves for each species. Also, modified
 # maximum y to better reflect maximum possible in species response curves.
+#
+# to get a smaller subset of species, make a list of species 
+# keep.species = c("ANGE", "SCSC")
+# veg.subset <- veg[,which(names(veg) %in% keep.species)]
 
 ordicoeno2 <- function (x, ordiplot, axis = 1, ...) 
 {
