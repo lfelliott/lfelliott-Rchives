@@ -5,10 +5,10 @@
 # to remove species
 # drop.species = c("ANGE", "SCSC")
 # x.subset <- x[,-which(names(x) %in% drop.species)]
-# or
+# or, 
 # x.subset <- subset(x, select=-c(ANGE, SCSC))
 # to keep the species
-# keep.species = c("BRIN2", "ANGE", "POPR", "HESP11", "SCSC", "SPHE", "SYER", "PEAR6", "SOCA6", "HEMA2", "ROAR3", "HEMA2", "PAVI2", "BODA2", "KOMA")
+# keep.species = c("BRIN2", "ANGE", "POPR", "HESP11", "SCSC", "SPHE", "SYER", "PEAR6", "SOCA6", "HEMA2", "ROAR3", "PAVI2", "BODA2", "KOMA")
 # x.subset <- x[, keep.species]
 
 
@@ -36,12 +36,10 @@ ordicoeno2 <- function (x, ordiplot, axis = 1, ...)
     colnames(newdata) <- "ordiscore"
 	lmax <- NULL
 	lmaxscore <- NULL
-# run through all the models to get the overall max value for plotting and the axis score where the max occurred stored in lmaxscore[]
 	for (i2 in 1:ncol(x)){
 		lgamresult <- gam(sorted[, i2] ~ s(ordiscore), data = sorted)
 		lgamresult2 <- predict(lgamresult, newdata)
 		lmax <- c(lmax, max(lgamresult2))
-# calculate axis score where max occurred
 		lmaxscore <- c(lmaxscore,((which(lgamresult2 == max(lgamresult2), arr.ind=T)[1]/1000)*(abs(min(sorted$ordiscore))+max(sorted$ordiscore))) + min(sorted$ordiscore))
 		}
 	curvemax = max(lmax)
@@ -50,12 +48,11 @@ ordicoeno2 <- function (x, ordiplot, axis = 1, ...)
     plot(newdata$ordiscore, gamresult2, type = "l", ylim = c(0, 
         curvemax), col = 1, pch = 1, xlab = "site score on ordination axis", 
         ylab = "species values", ...)
-	cat("Species\t\tColor\t\t\tMaximum Value\tScore of Max\n")
+	cat("Species\t\tColor\t\t\tMaximum Value\tedf\n")
 	if (nchar(colorsloaded[1]) > 5) cat(colnames(original)[1], "\t\t", colorsloaded[1],"\t\t", max(gamresult2), "\t", lmaxscore[1], "\n") else cat(colnames(original)[1], "\t\t", colorsloaded[1],"\t\t\t", max(gamresult2), "\t", lmaxscore[1],"\n")
 	species <- c(species, colnames(original)[1])
 	linecolor <- c(linecolor, 1)
 	linetype <- c(linetype, 1)
-	
 	for (i in 2:ncol(x)) {
         gamresult <- gam(sorted[, i] ~ s(ordiscore), data = sorted)
         gamresult2 <- predict(gamresult, newdata)
