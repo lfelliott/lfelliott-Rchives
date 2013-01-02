@@ -20,7 +20,7 @@ ordicoeno3 <- function (x, ordiplot, axis = 1, ...)
 	species <- NULL
 	linecolor <- NULL
 	linetype <- NULL
-    ordiscore <- scores(ordiplot, display = "sites")[Or, axis]
+    ordiscore <- scores(ordiplot, display = "sites")[, axis]
     original <- cbind(x, ordiscore)
     sorted <- original
     seq <- order(ordiscore)
