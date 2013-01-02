@@ -8,7 +8,7 @@
 # or
 # x.subset <- subset(x, select=-c(ANGE, SCSC))
 # to keep the species
-# keep.species = c("BRNI2", "ANGE", "POPR", "HESP11", "SCSC", "SPHE", "SYER", "PEAR6", "SOCA6", "HEMA2", "ROAR3", "HEMA2", "PAVI2", "BODA2", "KOMA")
+# keep.species = c("BRIN2", "ANGE", "POPR", "HESP11", "SCSC", "SPHE", "SYER", "PEAR6", "SOCA6", "HEMA2", "ROAR3", "HEMA2", "PAVI2", "BODA2", "KOMA")
 # x.subset <- x[, keep.species]
 
 
