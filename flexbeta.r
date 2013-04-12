@@ -1,0 +1,1 @@
+flexbeta <- function(x){return(as.hclust(agnes(x, method='flex', par.method=0.625)))}
