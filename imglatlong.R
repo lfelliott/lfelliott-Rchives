@@ -1,4 +1,4 @@
-# Function that returns latitude and longitude from an image file
+# Function that returns latitude and longitude from an image fileFu
 imglatlong <- function(imgname)
 	{
 	require(rgdal)
