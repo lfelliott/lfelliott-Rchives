@@ -1,6 +1,7 @@
-eos <- readOGR("eos.shp", layer="eos")
-hexes <- readOGR("hexes.shp", layer="hexes")
-counts <- data.frame(matrix(NA, nrow = 100, ncol = 2)
+library(rgdal)
+eos <- readOGR("epeos_ptsprj.shp", layer="epeos_ptsprj")
+hexes <- readOGR("ef_hex_edwards.shp", layer="ef_hex_edwards")
+counts <- data.frame(matrix(NA, nrow = 100, ncol = 2))
 colnames(counts) <- c("specCnt", "occCnt")
 hexids <- hexes$OBJECTID
 for (i in seq(1, 100))
