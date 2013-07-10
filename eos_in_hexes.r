@@ -12,10 +12,7 @@ for (i in seq(1, 100))
 	foundEos <- j[!is.na(j$OBJECTID),]
 	foundEos <- strtoi(rownames(foundEos))
 	selectedEos <- eos[eos$OBJECTID %in% foundEos,]
-	species <- selectedEos$SCIENTIFIC
-	speciesCount <- length(unique(species))
-	occCount <- length(selectedEos)
-	counts$specCnt[i] <- speciesCount
-	counts$occCnt[i] <- occCount
+	counts$specCnt[i] <- length(unique(selectedEos$SCIENTIFIC))
+	counts$occCnt[i] <- length(selectedEos)
 	}
 colMeans(counts)
