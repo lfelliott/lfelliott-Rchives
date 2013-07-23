@@ -6,5 +6,4 @@ writeOGR(tracks, getwd(), "peckranch", driver="ESRI Shapefile")
 #proj4string(PointsAsFrame) <- CRS("+proj=longlat +datum=WGS84")
 
 #The variants are as described in the readOGR help file, that is layer=
-#"waypoints", "tracks", "routes", "track_points", or "route_points". Maybe 
-#reading the help page might save time??
+#"waypoints", "tracks", "routes", "track_points", or "route_points". 
