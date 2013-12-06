@@ -3,6 +3,8 @@ setwd("d:/r/spatial")
 tracks <- readOGR("peckranch.gpx", layer='tracks')
 writeOGR(tracks, getwd(), "peckranch", driver="ESRI Shapefile")
 
+# or, more succintly
+#writeOGR(readOGR("peckranch.gpx", layer='tracks'), getwd(), "peckranch", driver="ESRI Shapefile")
 #proj4string(PointsAsFrame) <- CRS("+proj=longlat +datum=WGS84")
 
 #The variants are as described in the readOGR help file, that is layer=
