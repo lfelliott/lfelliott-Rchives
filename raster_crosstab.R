@@ -7,4 +7,4 @@ r_xtabdf <- as.data.frame(r_xtab)
 colnames(r_xtabdf) <- c("r1", "r2", "freq")
 write.csv(r_xtabdf, file='anderson_x_evt.csv')
 
-
+r_xtablng <- reshape(r_xtabdf, direction="long", v.names="freq", idvar="r1", timevar="r2)
