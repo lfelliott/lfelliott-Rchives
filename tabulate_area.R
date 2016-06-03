@@ -29,3 +29,4 @@ rownames(tab1)<-f1sm$NAME_2
 # We're interested in area so multiply the counts by the grid cell dimensions 
 cellsize <- 30
 tab1<-data.frame(apply(tab1, 2, function(x) cellsize * cellsize * x))
+tab1[is.na(tab1)] <- 0
