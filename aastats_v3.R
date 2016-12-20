@@ -20,9 +20,9 @@ print(expaccv)
 # expacc <-  sum(rowmarg * colmarg)/sum(mat)
 # expacc <- expacc/sum(mat)
 expacc <- sum(expacc)/sum(mat)
-print(paste("Expected accuracy: ", expacc, sep = ""))
+cat(paste("Expected accuracy: ", expacc, "\n", sep = ""))
 # Kappa
 kappa <- (acc - expacc)/(1-expacc)
-print(paste("Overall accuracy: ", acc, sep = ""))
-print(paste("Kappa: ", kappa, sep = ""))
+cat(paste("Overall accuracy: ", acc, "\n", sep = ""))
+cat(paste("Kappa: ", kappa, "\n", sep = ""))
 }
