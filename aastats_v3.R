@@ -26,3 +26,5 @@ kappa <- (acc - expacc)/(1-expacc)
 cat(paste("Overall accuracy: ", acc, "\n", sep = ""))
 cat(paste("Kappa: ", kappa, "\n", sep = ""))
 }
+
+
